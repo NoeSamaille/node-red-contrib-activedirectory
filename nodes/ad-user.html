@@ -1,0 +1,67 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ad-user',{
+        category: 'Active Directory',
+        color: '#0E9EFF',
+        defaults: {
+            name: {value:"ad user"}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "", // TODO: icon ad-user
+        label: function() {
+            return this.name||"ad-user";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="ad-user">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+
+        <label for="node-input-url"><i class="icon-tag"></i> Url</label>
+        <input type="text" id="node-input-url" placeholder="ldap://localhost">
+
+        <label for="node-input-base_dn"><i class="icon-tag"></i> Base DN</label>
+        <input type="text" id="node-input-base_dn" placeholder="dc=domain,dc=com">
+
+        <label for="node-input-username"><i class="icon-tag"></i> Username</label>
+        <input type="text" id="node-input-username" placeholder="username@domain.com">
+
+        <label for="node-input-password"><i class="icon-tag"></i> Password</label>
+        <input type="text" id="node-input-password">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="ad-user">
+  <p>Connects to a Microsoft Active Directory and returns the user corresponding to the username set in <code>msg.payload</code>.</p>
+
+  <h3>Inputs</h3>
+    <dl class="message-properties">
+      <dt>payload
+        <span class="property-type">string | buffer</span>
+      </dt>
+      <dd> the username of the user we want to get information. </dd>
+    </dl>
+
+  <h3>Outputs</h3>
+     <ol class="node-ports">
+         <li>Standard output
+             <dl class="message-properties">
+                 <dt>payload <span class="property-type">string</span></dt>
+                 <dd>the standard output of the command, a JSON object that contains all the information about the user.</dd>
+             </dl>
+         </li>
+         <li>Standard error
+             <dl class="message-properties">
+                 <dt>payload <span class="property-type">string</span></dt>
+                 <dd>the standard error of the command.</dd>
+             </dl>
+         </li>
+     </ol>
+
+  <h3>References</h3>
+    <ul>
+        <li><a href="https://github.com/guidone/node-red-contrib-activedirectory">GitHub</a> - the nodes github repository</li>
+    </ul>
+</script>
