@@ -44,7 +44,7 @@ module.exports = function(RED) {
         includeDeleted : false
       };
       ad.find(query, function(err, results) {
-        if ((err) || (! results)) {
+        if (err) {
           node.error('ERROR: ' + JSON.stringify(err));
           return;
         }
