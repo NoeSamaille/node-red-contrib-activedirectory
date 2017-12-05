@@ -10,6 +10,7 @@ module.exports = function(RED) {
     var cUsername = this.credentials.username;
     var cPassword = this.credentials.password;
     node.on('input', function(msg) {
+      node.status({fill:"blue",shape:"ring",text:"connecting"});
       // import activedirectory2
       var ActiveDirectory = require('activedirectory2');
       // set attributes if defined
@@ -36,20 +37,31 @@ module.exports = function(RED) {
         password: cPassword,
         attributes: node.ad_attributes
       };
-      var ad = new ActiveDirectory(adConfig);
-      // Find user by his DN
-      var dn = msg.payload;
-      ad.findUser(dn, function(err, user) {
-        if (err) {
-          node.error('ERROR: ' + JSON.stringify(err));
-          return;
-        }
-        if (! user) node.error('User: ' + dn + ' not found.');
-        else {
-          msg.payload = user;
-          node.send(msg);
-        }
-      });
+      try {
+        var ad = new ActiveDirectory(adConfig);
+        node.status({fill:"green",shape:"dot",text:"connected"});
+        // Find user by his DN
+        var dn = msg.payload;
+        node.status({fill:"blue",shape:"ring",text:"querying"});
+        ad.findUser(dn, function(err, user) {
+          if (err) {
+            node.status({fill:"red", shape:"dot", text:"error querying"});
+            node.error('ERROR querying: ' + JSON.stringify(err));
+            return;
+          }
+          if (! user) {
+            node.status({fill:"red", shape:"dot", text:"user not found"});
+            node.error('User: ' + dn + ' not found.');
+          }else {
+            msg.payload = user;
+            node.status({});
+            node.send(msg);
+          }
+        });
+      } catch(e) {
+        node.status({fill:"red", shape:"dot", text:"connexion error"});
+        node.error('ERROR connecting: ' + e.message);
+      }
     });
   }
 
