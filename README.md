@@ -10,7 +10,7 @@ Getting started
 ```sh
 sudo npm install -g node-red
 ```
-2. Go to your node-RED conf directory (basically `~/node-red`)
+2. Go to your node-RED conf directory (basically `~/.node-red`)
 ```sh
 npm install node-red-contrib-activedirectory
 ```
