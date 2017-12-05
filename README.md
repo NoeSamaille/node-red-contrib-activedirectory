@@ -48,8 +48,8 @@ Connects to a Microsoft Active Directory and returns the user corresponding to t
 
 __Inputs__
 
-+ `msg.payload`: _string_, the AD username of the user we want to get information. It also works with DN.
-+ `msg.ad_attributes`: _JSON Object_, the attributes we want to return for users and groups. By default, if not set, the following attributes are returned for users and groups:
++ `msg.payload` {string}: the AD username of the user we want to get information. It also works with DN.
++ `msg.ad_attributes` {JSON Object}: the attributes we want to return for users and groups. By default, if not set, the following attributes are returned for users and groups:
   + user: 
     + distinguishedName
     + userPrincipalName
@@ -75,7 +75,7 @@ __Inputs__
 
 __Outputs__
 
-+ `msg.payload`: _JSON Object_, the standard output of the command, a JSON object that contains all the information about the user.
++ `msg.payload` {JSON Object}: the standard output of the command, a JSON object that contains all the information about the user.
 
 <a id="query"></a>
 ### query
@@ -85,8 +85,8 @@ __Outputs__
 Connects to a Microsoft Active Directory and returns the result of the AD query input set in `msg.payload`.
 
 __Inputs__
-+ `msg.payload`: _string_, an LDAP query (more information: [LDAP query basics](https://technet.microsoft.com/en-us/library/aa996205(v=exchg.65).aspx)).
-+ `msg.ad_attributes`: _JSON Object_, the attributes we want to return for users and groups. By default, if not set, the following attributes are returned for users and groups:
++ `msg.payload` {string}: an LDAP query (more information: [LDAP query basics](https://technet.microsoft.com/en-us/library/aa996205(v=exchg.65).aspx)).
++ `msg.ad_attributes` {JSON Object}: the attributes we want to return for users and groups. By default, if not set, the following attributes are returned for users and groups:
   + user: 
     + distinguishedName
     + userPrincipalName
@@ -112,4 +112,4 @@ __Inputs__
 
 __Outputs__
 
-+ `msg.payload`: _JSON Object_, the standard output of the command, a JSON object that contains result of the AD query input.
++ `msg.payload` {JSON Object}: the standard output of the command, a JSON object that contains result of the AD query input.
