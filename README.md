@@ -6,15 +6,15 @@ node-red-contrib-activedirectory is a [Node-RED](https://nodered.org/) nodes col
 Getting started
 --------------
 
-+ Install Node-RED ([more](https://nodered.org/docs/getting-started/installation)):
+1. Install Node-RED ([more](https://nodered.org/docs/getting-started/installation)):
 ```sh
 sudo npm install -g node-red
 ```
-+ Go to your node-RED conf directory (basically `~/node-red`)
+2. Go to your node-RED conf directory (basically `~/node-red`)
 ```sh
 npm install node-red-contrib-activedirectory
 ```
-+ There you go! You can run Node-RED with:
+3. There you go! You can run Node-RED with:
 ```sh
 node-red
 ```
