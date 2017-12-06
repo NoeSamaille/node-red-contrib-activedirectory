@@ -25,6 +25,7 @@
   "node-red": {
     "nodes": {
       "find-user": "./nodes/find-user.js",
+      "find-group": "./nodes/find-group.js",
       "query": "./nodes/query.js"
     }
   },
