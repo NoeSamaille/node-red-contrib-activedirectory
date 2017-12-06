@@ -23,6 +23,7 @@ Documentation
 --------------
 + [Connection](#connection)
 + [findUser](#finduser)
++ [findGroup](#findgroup)
 + [query](#query)
 + [examples](https://github.com/NoeSamaille/node-red-contrib-activedirectory/wiki/Examples)
 
@@ -44,7 +45,7 @@ Every node requires LDAP configuration/credentials to create an instance of the 
 
 ![image of node finduser](https://github.com/NoeSamaille/node-red-contrib-activedirectory/blob/master/images/node_finduser.png)
 
-Connects to a Microsoft Active Directory and returns the user corresponding to the username set in `msg.payload`.
+Connects to a Microsoft Active Directory and returns the user corresponding to the username/DN set in `msg.payload`.
 
 __Inputs__
 
@@ -68,6 +69,36 @@ __Inputs__
 __Outputs__
 
 + `msg.payload` {JSON Object}: the standard output of the command, a JSON object that contains all the information about the user.
+
+<a id="findgroup"></a>
+### findGroup
+
+![image of node findgroup](https://github.com/NoeSamaille/node-red-contrib-activedirectory/blob/master/images/node_findgroup.png)
+
+Connects to a Microsoft Active Directory and returns the group corresponding to the groupname/DN set in `msg.payload`.
+
+__Inputs__
+
++ `msg.payload` {string}: the AD groupname of the group we want to get information. It also works with DN.
++ `msg.ad_attributes` {JSON Object}: the attributes we want to return for users and groups. By default:
+```json
+{
+  "user": [
+      "dn", "distinguishedName",
+      "userPrincipalName", "sAMAccountName", "mail",
+      "lockoutTime", "whenCreated", "pwdLastSet", "userAccountControl",
+      "employeeID", "sn", "givenName", "initials", "cn", "displayName",
+      "comment", "description", "url"
+  ],
+  "group": [
+      "dn", "cn", "description", "distinguishedName", "objectCategory"
+  ]
+}
+```
+
+__Outputs__
+
++ `msg.payload` {JSON Object}: the standard output of the command, a JSON object that contains all the information about the group.
 
 <a id="query"></a>
 ### query
