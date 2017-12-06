@@ -49,29 +49,21 @@ Connects to a Microsoft Active Directory and returns the user corresponding to t
 __Inputs__
 
 + `msg.payload` {string}: the AD username of the user we want to get information. It also works with DN.
-+ `msg.ad_attributes` {JSON Object}: the attributes we want to return for users and groups. By default, if not set, the following attributes are returned for users and groups:
-  + user: 
-    + distinguishedName
-    + userPrincipalName
-    + sAMAccountName
-    + mail
-    + lockoutTime
-    + whenCreated
-    + pwdLastSet
-    + userAccountControl
-    + employeeID
-    + sn
-    + givenName
-    + initials
-    + cn
-    + displayName
-    + comment
-    + description
-    + group:
-    + distinguishedName
-    + objectCategory
-    + cn
-    + description
++ `msg.ad_attributes` {JSON Object}: the attributes we want to return for users and groups. By default:
+```json
+{
+  user: [
+    'dn', 'distinguishedName',
+    'userPrincipalName', 'sAMAccountName', 'mail',
+    'lockoutTime', 'whenCreated', 'pwdLastSet', 'userAccountControl',
+    'employeeID', 'sn', 'givenName', 'initials', 'cn', 'displayName',
+    'comment', 'description', 'url'
+  ],
+  group: [
+    'dn', 'cn', 'description', 'distinguishedName', 'objectCategory'
+  ]
+}
+```
 
 __Outputs__
 
@@ -86,29 +78,21 @@ Connects to a Microsoft Active Directory and returns the result of the AD query 
 
 __Inputs__
 + `msg.payload` {string}: an LDAP query (more information: [LDAP query basics](https://technet.microsoft.com/en-us/library/aa996205(v=exchg.65).aspx)).
-+ `msg.ad_attributes` {JSON Object}: the attributes we want to return for users and groups. By default, if not set, the following attributes are returned for users and groups:
-  + user: 
-    + distinguishedName
-    + userPrincipalName
-    + sAMAccountName
-    + mail
-    + lockoutTime
-    + whenCreated
-    + pwdLastSet
-    + userAccountControl
-    + employeeID
-    + sn
-    + givenName
-    + initials
-    + cn
-    + displayName
-    + comment
-    + description
-  + group:
-    + distinguishedName
-    + objectCategory
-    + cn
-    + description
++ `msg.ad_attributes` {JSON Object}: the attributes we want to return for users and groups. By default:
+```json
+{
+  user: [
+    'dn', 'distinguishedName',
+    'userPrincipalName', 'sAMAccountName', 'mail',
+    'lockoutTime', 'whenCreated', 'pwdLastSet', 'userAccountControl',
+    'employeeID', 'sn', 'givenName', 'initials', 'cn', 'displayName',
+    'comment', 'description', 'url'
+  ],
+  group: [
+    'dn', 'cn', 'description', 'distinguishedName', 'objectCategory'
+  ]
+}
+```
 
 __Outputs__
 
