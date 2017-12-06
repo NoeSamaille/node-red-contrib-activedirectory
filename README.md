@@ -52,15 +52,15 @@ __Inputs__
 + `msg.ad_attributes` {JSON Object}: the attributes we want to return for users and groups. By default:
 ```json
 {
-  user: [
-    'dn', 'distinguishedName',
-    'userPrincipalName', 'sAMAccountName', 'mail',
-    'lockoutTime', 'whenCreated', 'pwdLastSet', 'userAccountControl',
-    'employeeID', 'sn', 'givenName', 'initials', 'cn', 'displayName',
-    'comment', 'description', 'url'
+  "user": [
+      "dn", "distinguishedName",
+      "userPrincipalName", "sAMAccountName", "mail",
+      "lockoutTime", "whenCreated", "pwdLastSet", "userAccountControl",
+      "employeeID", "sn", "givenName", "initials", "cn", "displayName",
+      "comment", "description", "url"
   ],
-  group: [
-    'dn', 'cn', 'description', 'distinguishedName', 'objectCategory'
+  "group": [
+      "dn", "cn", "description", "distinguishedName", "objectCategory"
   ]
 }
 ```
@@ -81,15 +81,15 @@ __Inputs__
 + `msg.ad_attributes` {JSON Object}: the attributes we want to return for users and groups. By default:
 ```json
 {
-  user: [
-    'dn', 'distinguishedName',
-    'userPrincipalName', 'sAMAccountName', 'mail',
-    'lockoutTime', 'whenCreated', 'pwdLastSet', 'userAccountControl',
-    'employeeID', 'sn', 'givenName', 'initials', 'cn', 'displayName',
-    'comment', 'description', 'url'
+  "user": [
+      "dn", "distinguishedName",
+      "userPrincipalName", "sAMAccountName", "mail",
+      "lockoutTime", "whenCreated", "pwdLastSet", "userAccountControl",
+      "employeeID", "sn", "givenName", "initials", "cn", "displayName",
+      "comment", "description", "url"
   ],
-  group: [
-    'dn', 'cn', 'description', 'distinguishedName', 'objectCategory'
+  "group": [
+      "dn", "cn", "description", "distinguishedName", "objectCategory"
   ]
 }
 ```
