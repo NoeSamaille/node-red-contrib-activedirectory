@@ -32,10 +32,10 @@
     }
   },
   "dependencies": {
-    "activedirectory2": "^1.2.3",
-    "node-red": "^0.17.5"
+    "activedirectory2": "^1.2.3"
   },
   "devDependencies": {
+    "node-red": "^0.17.5",
     "express": "^4.16.2",
     "mocha": "^4.0.1",
     "nock": "^9.1.4",
