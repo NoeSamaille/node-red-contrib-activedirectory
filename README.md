@@ -2,9 +2,6 @@ ActiveDirectory for Node-RED
 =========
 
 [![build](https://api.travis-ci.org/NoeSamaille/node-red-contrib-activedirectory.svg?branch=master)](https://travis-ci.org/NoeSamaille/node-red-contrib-activedirectory)
-![download](https://img.shields.io/npm/dm/node-red-contrib-activedirectory.svg)
-
-
 
 node-red-contrib-activedirectory is a [Node-RED](https://nodered.org/) nodes collection for Microsoft Active Directory. It is based on the [activedirectory2](https://www.npmjs.com/package/activedirectory2) ldapjs client for auth (authentication) and authZ (authorization) for Microsoft Active Directory (documentation [here](https://www.npmjs.com/package/activedirectory2)).
 
