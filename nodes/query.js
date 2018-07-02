@@ -13,30 +13,17 @@ module.exports = function(RED) {
       node.status({fill:"blue", shape:"ring", text:"connecting"});
       // import activedirectory2
       var ActiveDirectory = require('activedirectory2');
-      // set attributes if defined
-      if(msg.ad_attributes !== 'undefined'){
-        node.ad_attributes = msg.ad_attributes;
-      } else{
-        node.ad_attributes = {
-          user: [
-            'dn', 'distinguishedName',
-            'userPrincipalName', 'sAMAccountName', 'mail',
-            'lockoutTime', 'whenCreated', 'pwdLastSet', 'userAccountControl',
-            'employeeID', 'sn', 'givenName', 'initials', 'cn', 'displayName',
-            'comment', 'description', 'url'
-          ],
-          group: [
-            'dn', 'cn', 'description', 'distinguishedName', 'objectCategory'
-          ]
-        };
-      }
       var adConfig = {
         url: node.url,
         baseDN: node.baseDN,
         username: cUsername,
-        password: cPassword,
-        attributes: node.ad_attributes
+        password: cPassword
       };
+      // set attributes if defined
+      if (msg.ad_attributes) {
+        // Validates the Object format (required for IBMi platform)
+        adConfig.attributes = JSON.parse(JSON.stringify(msg.ad_attributes));
+      }
       try {
         var ad = new ActiveDirectory(adConfig);
         node.status({fill:"green", shape:"dot", text:"connected"});
