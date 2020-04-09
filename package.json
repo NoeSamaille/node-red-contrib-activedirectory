@@ -35,7 +35,7 @@
     "activedirectory2": "^1.2.3"
   },
   "devDependencies": {
-    "node-red": "^0.17.5",
+    "node-red": "^1.0.4",
     "express": "^4.16.2",
     "mocha": "^4.0.1",
     "nock": "^9.1.4",
