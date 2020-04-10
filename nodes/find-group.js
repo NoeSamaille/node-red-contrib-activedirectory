@@ -24,6 +24,10 @@ module.exports = function(RED) {
         // Validates the Object format (required for IBMi platform)
         adConfig.attributes = JSON.parse(JSON.stringify(msg.ad_attributes));
       }
+      if (msg.tlsOptions) {
+        // Validates the Object format (required for IBMi platform)
+        adConfig.tlsOptions = JSON.parse(JSON.stringify(msg.tlsOptions));
+      }
       try {
         var ad = new ActiveDirectory(adConfig);
         node.status({fill:"green",shape:"dot",text:"connected"});
