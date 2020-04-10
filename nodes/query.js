@@ -16,6 +16,7 @@ module.exports = function(RED) {
       var adConfig = {
         url: node.url,
         baseDN: node.baseDN,
+        tlsOptions: node.tlsOptions,
         username: cUsername,
         password: cPassword
       };
@@ -23,6 +24,10 @@ module.exports = function(RED) {
       if (msg.ad_attributes) {
         // Validates the Object format (required for IBMi platform)
         adConfig.attributes = JSON.parse(JSON.stringify(msg.ad_attributes));
+      }
+      if (msg.tlsOptions) {
+        // Validates the Object format (required for IBMi platform)
+        adConfig.tlsOptions = JSON.parse(JSON.stringify(msg.tlsOptions));
       }
       try {
         var ad = new ActiveDirectory(adConfig);

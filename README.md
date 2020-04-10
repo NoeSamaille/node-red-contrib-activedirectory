@@ -5,6 +5,8 @@ ActiveDirectory for Node-RED
 
 node-red-contrib-activedirectory is a [Node-RED](https://nodered.org/) nodes collection for Microsoft Active Directory. It is based on the [activedirectory2](https://www.npmjs.com/package/activedirectory2) ldapjs client for auth (authentication) and authZ (authorization) for Microsoft Active Directory (documentation [here](https://www.npmjs.com/package/activedirectory2)).
 
+If you want to contribute in order to add brand new features and/or nodes, do not hesitate to join and submit your merge requests!
+
 Getting started
 --------------
 
@@ -40,12 +42,12 @@ Every node requires LDAP configuration/credentials to create an instance of the 
 + `username` {string}: An account name capable of performing the operations desired.
 + `password` {string}: Password for the given `username`.
 
-![image of node credentials](https://github.com/NoeSamaille/node-red-contrib-activedirectory/blob/master/images/node_credentials.png)
+![image of node credentials](images/node_credentials.png)
 
 <a id="finduser"></a>
 ### findUser
 
-![image of node finduser](https://github.com/NoeSamaille/node-red-contrib-activedirectory/blob/master/images/node_finduser.png)
+![image of node finduser](images/node_finduser.png)
 
 Connects to a Microsoft Active Directory and returns the user corresponding to the username/DN set in `msg.payload`.
 
@@ -67,6 +69,7 @@ __Inputs__
   ]
 }
 ```
++ `msg.tlsOptions` {JSON Object}: (Optional) Additional options passed to TLS connection layer when connecting via ldaps://. (See: [TLS docs for node.js](https://nodejs.org/api/tls.html#tls_tls_connect_options_callback)).
 
 __Outputs__
 
@@ -75,7 +78,7 @@ __Outputs__
 <a id="findgroup"></a>
 ### findGroup
 
-![image of node findgroup](https://github.com/NoeSamaille/node-red-contrib-activedirectory/blob/master/images/node_findgroup.png)
+![image of node findgroup](images/node_findgroup.png)
 
 Connects to a Microsoft Active Directory and returns the group corresponding to the groupname/DN set in `msg.payload`.
 
@@ -97,6 +100,7 @@ __Inputs__
   ]
 }
 ```
++ `msg.tlsOptions` {JSON Object}: (Optional) Additional options passed to TLS connection layer when connecting via ldaps://. (See: [TLS docs for node.js](https://nodejs.org/api/tls.html#tls_tls_connect_options_callback)).
 
 __Outputs__
 
@@ -105,7 +109,7 @@ __Outputs__
 <a id="query"></a>
 ### query
 
-![image of node query](https://github.com/NoeSamaille/node-red-contrib-activedirectory/blob/master/images/node_query.png)
+![image of node query](images/node_query.png)
 
 Connects to a Microsoft Active Directory and returns the result of the AD query input set in `msg.payload`.
 
@@ -126,6 +130,7 @@ __Inputs__
   ]
 }
 ```
++ `msg.tlsOptions` {JSON Object}: (Optional) Additional options passed to TLS connection layer when connecting via ldaps://. (See: [TLS docs for node.js](https://nodejs.org/api/tls.html#tls_tls_connect_options_callback)).
 
 __Outputs__
 
