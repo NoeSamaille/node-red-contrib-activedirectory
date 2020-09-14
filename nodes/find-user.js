@@ -37,12 +37,12 @@ module.exports = function(RED) {
         ad.findUser(dn, function(err, user) {
           if (err) {
             node.status({fill:"red", shape:"dot", text:"error querying"});
-            node.error('ERROR querying: ' + JSON.stringify(err));
+            node.error('ERROR querying: ' + JSON.stringify(err), msg);
             return;
           }
           if (! user) {
             node.status({fill:"red", shape:"dot", text:"user not found"});
-            node.error('User: ' + dn + ' not found.');
+            node.error('User: ' + dn + ' not found.', msg);
           }else {
             msg.payload = user;
             node.status({});
@@ -51,7 +51,7 @@ module.exports = function(RED) {
         });
       } catch(e) {
         node.status({fill:"red", shape:"dot", text:"connexion error"});
-        node.error('ERROR connecting: ' + e.message);
+        node.error('ERROR connecting: ' + e.message, msg);
       }
     });
   }
