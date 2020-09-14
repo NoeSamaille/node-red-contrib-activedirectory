@@ -41,7 +41,7 @@ module.exports = function(RED) {
         ad.find(query, function(err, results) {
           if (err) {
             node.status({fill:"red", shape:"dot", text:"error querying"});
-            node.error('ERROR querying: ' + JSON.stringify(err));
+            node.error('ERROR querying: ' + JSON.stringify(err), msg);
             return;
           }
           msg.payload = results;
@@ -50,7 +50,7 @@ module.exports = function(RED) {
         });
       } catch(e) {
         node.status({fill:"red", shape:"dot", text:"connexion error"});
-        node.error('ERROR connecting: ' + e.message);
+        node.error('ERROR connecting: ' + e.message, msg);
       }
     });
   }
