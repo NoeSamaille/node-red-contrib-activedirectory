@@ -37,12 +37,12 @@ module.exports = function(RED) {
         ad.findGroup(dn, function(err, group) {
           if (err) {
             node.status({fill:"red", shape:"dot", text:"error querying"});
-            node.error('ERROR querying: ' + JSON.stringify(err));
+            node.error('ERROR querying: ' + JSON.stringify(err), msg);
             return;
           }
           if (! group) {
             node.status({fill:"red", shape:"dot", text:"group not found"});
-            node.error('Group: ' + dn + ' not found.');
+            node.error('Group: ' + dn + ' not found.', msg);
           }else {
             msg.payload = group;
             node.status({});
@@ -51,7 +51,7 @@ module.exports = function(RED) {
         });
       } catch(e) {
         node.status({fill:"red", shape:"dot", text:"connexion error"});
-        node.error('ERROR connecting: ' + e.message);
+        node.error('ERROR connecting: ' + e.message, msg);
       }
     });
   }
