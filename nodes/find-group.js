@@ -41,7 +41,7 @@ module.exports = function(RED) {
             node.error(errTxt, msg);
           } else if (! group) {
             let errTxt =  'Group ' + dn + ' not found.';
-            msg.payload = new Object();
+            delete msg.payload;
             msg.ad_error = errTxt;
             node.status({fill:"yellow", shape:"dot", text: errTxt});
             node.send(msg);
