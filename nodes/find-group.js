@@ -36,21 +36,23 @@ module.exports = function(RED) {
         node.status({fill:"blue",shape:"ring",text:"querying"});
         ad.findGroup(dn, function(err, group) {
           if (err) {
-            node.status({fill:"red", shape:"dot", text:"error querying"});
-            node.error('ERROR querying: ' + JSON.stringify(err), msg);
-            return;
-          }
-          if (! group) {
-            node.status({fill:"red", shape:"dot", text:"group not found"});
-            node.error('Group: ' + dn + ' not found.', msg);
+            let errTxt = 'ERROR querying: ' + JSON.stringify(err);
+            node.status({fill:"red", shape:"dot", text: errTxt});
+            node.error(errTxt, msg);
+          } else if (! group) {
+            let errTxt =  'Group ' + dn + ' not found.';
+            msg.payload = new Object();
+            msg.ad_error = errTxt;
+            node.status({fill:"yellow", shape:"dot", text: errTxt});
+            node.send(msg);
           }else {
             msg.payload = group;
-            node.status({});
+            node.status({fill:"green", shape:"dot", text: 'Group ' + dn + ' found'});
             node.send(msg);
           }
         });
       } catch(e) {
-        node.status({fill:"red", shape:"dot", text:"connexion error"});
+        node.status({fill:"red", shape:"dot", text:"connection error"});
         node.error('ERROR connecting: ' + e.message, msg);
       }
     });

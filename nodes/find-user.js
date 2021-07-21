@@ -2,14 +2,14 @@ module.exports = function(RED) {
 
   function findUserNode(config) {
     RED.nodes.createNode(this,config);
-    var node = this;
+    let node = this;
     // we get the properties
     node.url = config.url;
     node.baseDN = config.baseDN
     // we get the credentials
-    var cUsername = this.credentials.username;
-    var cPassword = this.credentials.password;
-    node.on('input', function(msg) {
+    let cUsername = this.credentials.username;
+    let cPassword = this.credentials.password;
+    this.on('input', function(msg) {
       node.status({fill:"blue",shape:"ring",text:"connecting"});
       // import activedirectory2
       var ActiveDirectory = require('activedirectory2');
@@ -36,22 +36,25 @@ module.exports = function(RED) {
         node.status({fill:"blue",shape:"ring",text:"querying"});
         ad.findUser(dn, function(err, user) {
           if (err) {
+            let errTxt = 'ERROR querying: ' + JSON.stringify(err);
             node.status({fill:"red", shape:"dot", text:"error querying"});
-            node.error('ERROR querying: ' + JSON.stringify(err), msg);
-            return;
-          }
-          if (! user) {
-            node.status({fill:"red", shape:"dot", text:"user not found"});
-            node.error('User: ' + dn + ' not found.', msg);
-          }else {
+            node.error(errTxt);
+          } else if (! user) {
+            var errTxt = "User " + dn + " not found";
+            msg.payload = new Object();
+            msg.ad_error = errTxt;
+            node.status({fill:"yellow", shape:"dot", text: errTxt});
+            node.send(msg);
+          } else {
             msg.payload = user;
-            node.status({});
+            node.status({fill:"green", shape:"dot", text:"user" + dn + "found"});
             node.send(msg);
           }
         });
       } catch(e) {
-        node.status({fill:"red", shape:"dot", text:"connexion error"});
-        node.error('ERROR connecting: ' + e.message, msg);
+        let errTxt = 'ERROR connecting: ' + e.message;
+        node.status({fill:"red", shape:"dot", text:"connection error"});
+        node.error(errTxt, msg);
       }
     });
   }
@@ -62,5 +65,4 @@ module.exports = function(RED) {
       password: {type:"password"}
     }
   });
-
 }

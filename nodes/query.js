@@ -42,14 +42,14 @@ module.exports = function(RED) {
           if (err) {
             node.status({fill:"red", shape:"dot", text:"error querying"});
             node.error('ERROR querying: ' + JSON.stringify(err), msg);
-            return;
-          }
-          msg.payload = results;
-          node.status({});
+          } else {
+            msg.payload = results;
+          node.status({fill:"green", shape:"dot", text:"query successful"});
           node.send(msg);
+          }
         });
       } catch(e) {
-        node.status({fill:"red", shape:"dot", text:"connexion error"});
+        node.status({fill:"red", shape:"dot", text:"connection error"});
         node.error('ERROR connecting: ' + e.message, msg);
       }
     });
