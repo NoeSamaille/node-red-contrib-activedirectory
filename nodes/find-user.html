@@ -82,11 +82,21 @@
       <dd> the AD username of the user we want to get information. It also works with DN.</dd>
     </dl>
     <dl class="message-properties">
-      <dt>tlsOptions
+      <dt>ad_attributes <i>(optional)</i>
+        <span class="property-type">JSON object</span>
+      </dt>
+      <dd> 
+        <p>The attributes we want to return for the found user. 
+          By default, if not set, the following attributes are returned:</p>
+        <p>distinguishedName, userPrincipalName, sAMAccountName, mail, lockoutTime, whenCreated, pwdLastSet, userAccountControl, employeeID, sn, givenName, initials, cn, displayName, comment, description</p>
+      </dd>
+    </dl>
+    <dl class="message-properties">
+      <dt>tlsOptions <i>(optional)</i>
         <span class="property-type">JSON object</span>
       </dt>
       <dd>
-        <p><code>msg.tlsOptions</code>: (Optional) Additional options passed to TLS connection layer when connecting via <code>ldaps://</code>. (See: <a target="_blank" href="https://nodejs.org/api/tls.html#tls_tls_connect_options_callback">TLS docs for node.js</a>)</p>
+        <p>Additional options passed to TLS connection layer when connecting via <code>ldaps://</code>. (See: <a target="_blank" href="https://nodejs.org/api/tls.html#tls_tls_connect_options_callback">TLS docs for node.js</a>)</p>
       </dd>
     </dl>
 
@@ -95,7 +105,13 @@
          <li>Standard output
              <dl class="message-properties">
                  <dt>payload <span class="property-type">string</span></dt>
-                 <dd>the standard output of the command, a JSON object that contains all the information about the user.</dd>
+                 <dd>the standard output of the command, a JSON object that contains all the information about the user.
+                     If no user was found, the message has no <code>payload</code> attribute.
+                 </dd>
+             </dl>
+             <dl class="message-properties">
+                 <dt>ad_error <i>(optional)</i><span class="property-type">string</span></dt>
+                 <dd>Contains an error message, if no user was found.</dd>
              </dl>
          </li>
          <li>Standard error

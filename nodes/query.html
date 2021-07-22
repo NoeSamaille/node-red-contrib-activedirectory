@@ -83,20 +83,20 @@
       <dd> <code>msg.payload</code>: an Active Directory query </dd>
     </dl>
     <dl class="message-properties">
-      <dt>ad_attributes
+      <dt>ad_attributes <i>(optional)</i>
         <span class="property-type">JSON object</span>
       </dt>
-      <dd> <p><code>msg.ad_attributes</code>: the attributes we want to return for users and groups. By default, if not set, the following attributes are returned for users and groups:</p>
+      <dd>The attributes we want to return for users and groups. By default, if not set, the following attributes are returned for users and groups:</p>
         <p><b>user</b> - distinguishedName, userPrincipalName, sAMAccountName, mail, lockoutTime, whenCreated, pwdLastSet, userAccountControl, employeeID, sn, givenName, initials, cn, displayName, comment, description</p>
         <p><b>group</b> - distinguishedName, objectCategory, cn, description</p>
       </dd>
     </dl>
     <dl class="message-properties">
-      <dt>tlsOptions
+      <dt>tlsOptions <i>(optional)</i>
         <span class="property-type">JSON object</span>
       </dt>
       <dd>
-        <p><code>msg.tlsOptions</code>: (Optional) Additional options passed to TLS connection layer when connecting via <code>ldaps://</code>. (See: <a target="_blank" href="https://nodejs.org/api/tls.html#tls_tls_connect_options_callback">TLS docs for node.js</a>)</p>
+        <p>Additional options passed to TLS connection layer when connecting via <code>ldaps://</code>. (See: <a target="_blank" href="https://nodejs.org/api/tls.html#tls_tls_connect_options_callback">TLS docs for node.js</a>)</p>
       </dd>
     </dl>
   </ol>
