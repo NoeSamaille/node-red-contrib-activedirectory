@@ -1,7 +1,11 @@
 ActiveDirectory for Node-RED
 =========
 
-[![build](https://api.travis-ci.org/NoeSamaille/node-red-contrib-activedirectory.svg?branch=master)](https://travis-ci.org/NoeSamaille/node-red-contrib-activedirectory)
+[![build](https://github.com/NoeSamaille/node-red-contrib-activedirectory/actions/workflows/test.yml/badge.svg)](https://github.com/NoeSamaille/node-red-contrib-activedirectory/actions/workflows/test.yml)
+[![CodeQL](https://github.com/NoeSamaille/node-red-contrib-activedirectory/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/NoeSamaille/node-red-contrib-activedirectory/actions/workflows/codeql-analysis.yml)
+[![NPM](https://img.shields.io/npm/v/node-red-contrib-activedirectory)](https://www.npmjs.com/package/node-red-contrib-activedirectory)
+[![NPM_downloads](https://img.shields.io/npm/dm/node-red-contrib-activedirectory)](https://www.npmjs.com/package/node-red-contrib-activedirectory)
+[![issues](https://img.shields.io/github/issues/NoeSamaille/node-red-contrib-activedirectory)](https://github.com/NoeSamaille/node-red-contrib-activedirectory/issues)
 
 node-red-contrib-activedirectory is a [Node-RED](https://nodered.org/) nodes collection for Microsoft Active Directory. It is based on the [activedirectory2](https://www.npmjs.com/package/activedirectory2) ldapjs client for auth (authentication) and authZ (authorization) for Microsoft Active Directory (documentation [here](https://www.npmjs.com/package/activedirectory2)).
 
