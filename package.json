@@ -4,7 +4,7 @@
   "description": "Node-RED node collection for Microsoft Active Directory.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha \"test/**/*_spec.js\""
+    "test": "standard --verbose && mocha \"test/**/*_spec.js\""
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,12 @@
   "devDependencies": {
     "mocha": "^9.0.3",
     "node-red": "^2.0.5",
-    "node-red-node-test-helper": "^0.2.7"
+    "node-red-node-test-helper": "^0.2.7",
+    "standard": "^16.0.3"
+  },
+  "standard" : {
+    "ignore": [
+      "test/*_spec.js"
+    ]
   }
 }
