@@ -40,3 +40,4 @@ Thumbs.db
 ##########
 .vscode
 node_modules
+.github/workflows/
