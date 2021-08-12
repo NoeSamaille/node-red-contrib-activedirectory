@@ -1,65 +1,63 @@
-module.exports = function(RED) {
-
-  function queryNode(config) {
-    RED.nodes.createNode(this,config);
-    var node = this;
+module.exports = function (RED) {
+  function queryNode (config) {
+    RED.nodes.createNode(this, config)
+    const node = this
     // we get the properties
-    node.url = config.url;
-    node.baseDN = config.baseDN;
+    node.url = config.url
+    node.baseDN = config.baseDN
     // we get the credentials
-    var cUsername = this.credentials.username;
-    var cPassword = this.credentials.password;
-    node.on('input', function(msg) {
-      node.status({fill:"blue", shape:"ring", text:"connecting"});
+    const cUsername = this.credentials.username
+    const cPassword = this.credentials.password
+    node.on('input', function (msg) {
+      node.status({ fill: 'blue', shape: 'ring', text: 'connecting' })
       // import activedirectory2
-      var ActiveDirectory = require('activedirectory2');
-      var adConfig = {
+      const ActiveDirectory = require('activedirectory2')
+      const adConfig = {
         url: node.url,
         baseDN: node.baseDN,
         tlsOptions: node.tlsOptions,
         username: cUsername,
         password: cPassword
-      };
+      }
       // set attributes if defined
       if (msg.ad_attributes) {
         // Validates the Object format (required for IBMi platform)
-        adConfig.attributes = JSON.parse(JSON.stringify(msg.ad_attributes));
+        adConfig.attributes = JSON.parse(JSON.stringify(msg.ad_attributes))
       }
       if (msg.tlsOptions) {
         // Validates the Object format (required for IBMi platform)
-        adConfig.tlsOptions = JSON.parse(JSON.stringify(msg.tlsOptions));
+        adConfig.tlsOptions = JSON.parse(JSON.stringify(msg.tlsOptions))
       }
       try {
-        var ad = new ActiveDirectory(adConfig);
-        node.status({fill:"green", shape:"dot", text:"connected"});
-        var query = msg.payload;
-        var opts = {
-          includeMembership : [ 'group', 'user' ], // Optionally can use 'all'
-          includeDeleted : false
-        };
-        node.status({fill:"blue",shape:"ring",text:"querying"});
-        ad.find(query, function(err, results) {
+        const ad = new ActiveDirectory(adConfig)
+        node.status({ fill: 'green', shape: 'dot', text: 'connected' })
+        const query = msg.payload
+        // const opts = {
+        //  includeMembership: ['group', 'user'], // Optionally can use 'all'
+        //  includeDeleted: false
+        // }
+        node.status({ fill: 'blue', shape: 'ring', text: 'querying' })
+        ad.find(query, function (err, results) {
           if (err) {
-            node.status({fill:"red", shape:"dot", text:"error querying"});
-            node.error('ERROR querying: ' + JSON.stringify(err), msg);
+            node.status({ fill: 'red', shape: 'dot', text: 'error querying' })
+            node.error('ERROR querying: ' + JSON.stringify(err), msg)
           } else {
-            msg.payload = results;
-          node.status({fill:"green", shape:"dot", text:"query successful"});
-          node.send(msg);
+            msg.payload = results
+            node.status({ fill: 'green', shape: 'dot', text: 'query successful' })
+            node.send(msg)
           }
-        });
-      } catch(e) {
-        node.status({fill:"red", shape:"dot", text:"connection error"});
-        node.error('ERROR connecting: ' + e.message, msg);
+        })
+      } catch (e) {
+        node.status({ fill: 'red', shape: 'dot', text: 'connection error' })
+        node.error('ERROR connecting: ' + e.message, msg)
       }
-    });
+    })
   }
 
-  RED.nodes.registerType("query",queryNode,{
+  RED.nodes.registerType('query', queryNode, {
     credentials: {
-      username: {type:"text"},
-      password: {type:"password"}
+      username: { type: 'text' },
+      password: { type: 'password' }
     }
-  });
-
+  })
 }
