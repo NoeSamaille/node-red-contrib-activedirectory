@@ -118,7 +118,7 @@ __Outputs__
 Connects to a Microsoft Active Directory and returns the result of the AD query input set in `msg.payload`.
 
 __Inputs__
-+ `msg.payload` {string}: an LDAP query (more information: [LDAP query basics](https://technet.microsoft.com/en-us/library/aa996205(v=exchg.65).aspx)).
++ `msg.payload` {string}: an LDAP query (more information: [AD Search FilterSyntax](https://docs.microsoft.com/en-us/windows/win32/adsi/search-filter-syntax)).
 + `msg.ad_attributes` {JSON Object}: the attributes we want to return for users and groups. By default:
 ```json
 {
