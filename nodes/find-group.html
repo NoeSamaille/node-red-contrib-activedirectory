@@ -6,23 +6,13 @@
         name: {
           value: ""
         },
-        url: {
+        configName: {
           value: "",
-          required: true
+          type: "activedirectory-config"
         },
         baseDN: {
           value: "",
           required: false
-        }
-      },
-      credentials: {
-        username: {
-          type:"text",
-          required: true
-        },
-        password: {
-          type:"password",
-          required: true
         }
       },
       inputs:1,
@@ -43,31 +33,20 @@
       <label for="node-input-name"><i class="icon-tag"></i> Name</label>
       <input type="text" id="node-input-name" placeholder="Name">
     </div>
+
   
     <hr>
     <h5>Active Directory</h5>
     <hr>
+
     <div class="form-row">
-      <label for="node-input-url"><i class="icon-globe"></i> Url</label>
-      <input type="text" id="node-input-url" placeholder="ldap://localhost">
+      <label >ConfigName</label>
+      <input type="text" id="node-input-configName">
     </div>
   
     <div class="form-row">
       <label for="node-input-baseDN"><i class="icon-tag"></i> Base DN</label>
       <input type="text" id="node-input-baseDN" placeholder="dc=domain,dc=com">
-    </div>
-  
-    <hr>
-    <h5>Credentials</h5>
-    <hr>
-    <div class="form-row">
-      <label for="node-input-username"><i class="icon-user"></i> Username</label>
-      <input type="text" id="node-input-username" placeholder="username@domain.com">
-    </div>
-  
-    <div class="form-row">
-      <label for="node-input-password"><i class="fa fa-key"></i> Password</label>
-      <input type="password" id="node-input-password">
     </div>
   </script>
   

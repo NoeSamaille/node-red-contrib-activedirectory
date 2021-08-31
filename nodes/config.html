@@ -1,0 +1,82 @@
+<script type="text/javascript">
+    RED.nodes.registerType('activedirectory-config',{
+      category: 'config',
+      defaults: {
+        name: {
+          value: ""
+        },
+        url: {
+          value: "",
+          required: true
+        }
+      },
+      credentials: {
+        username: {
+          type:"text",
+          required: true
+        },
+        password: {
+          type:"password",
+          required: true
+        }
+      },
+      label: function() {
+        return this.name||"config node";
+      }
+    });
+  </script>
+  
+<script type="text/x-red" data-template-name="activedirectory-config">
+  
+    <hr>
+    <h4>Node Configuration</h4>
+    <hr>
+    <div class="form-row">
+      <label for="node-config-input-name"><i class="icon-tag"></i> Name</label>
+      <input type="text" id="node-config-input-name" placeholder="Name">
+    </div>
+  
+    <hr>
+    <h5>Active Directory</h5>
+    <hr>
+    <div class="form-row">
+      <label for="node-config-input-url"><i class="icon-globe"></i> Url</label>
+      <input type="text" id="node-config-input-url" placeholder="ldap://localhost">
+    </div>
+  
+    <hr>
+    <h5>Credentials</h5>
+    <hr>
+    <div class="form-row">
+      <label for="node-config-input-username"><i class="icon-user"></i> Username</label>
+      <input type="text" id="node-config-input-username" placeholder="username@domain.com">
+    </div>
+  
+    <div class="form-row">
+      <label for="node-config-input-password"><i class="fa fa-key"></i> Password</label>
+      <input type="password" id="node-config-input-password">
+    </div>
+  </script>
+
+ <script type="text/x-red" data-help-name="activedirectory-config">
+    <p>Configuration Node for all other ActiveDirectory-nodes.</p>
+  
+    <h3>Details</h3>
+
+    <h4>Name</h4>
+    Give your custom configuration a name to identify it within the ActiveDirectory-nodes.
+
+    <h4>Url</h4>
+    The Url used to connect to your ActiveDirectory.
+
+    <h4>Username</h4>
+    The Username you wish to access your ActiveDirectory with.
+
+    <h4>Password</h4>
+    The Password to the account corresponding to above username.
+
+    <h3>References</h3>
+      <ul>
+          <li><a href="https://github.com/NoeSamaille/node-red-contrib-activedirectory">GitHub</a> - the nodes github repository</li>
+      </ul>
+  </script>
