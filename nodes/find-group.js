@@ -6,7 +6,6 @@ module.exports = function (RED) {
     var cUsername;
     var cPassword;
     if(configNode){
-      node.error("Gothere!");
       //fetch centralized properties
       node.url=configNode.url;
       //fetch centralized credentials
@@ -21,6 +20,7 @@ module.exports = function (RED) {
       const cUsername = this.credentials.username
       const cPassword = this.credentials.password*/
     }
+    //Get node-specific properties
     node.baseDN = config.baseDN
     node.on('input', function (msg) {
       node.status({ fill: 'blue', shape: 'ring', text: 'connecting' })

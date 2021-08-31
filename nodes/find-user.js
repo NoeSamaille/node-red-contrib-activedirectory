@@ -2,12 +2,26 @@ module.exports = function (RED) {
   function findUserNode (config) {
     RED.nodes.createNode(this, config)
     const node = this
-    // we get the properties
-    node.url = config.url
+    var configNode=RED.nodes.getNode(config.configName);
+    var cUsername;
+    var cPassword;
+    if(configNode){
+      //fetch centralized properties
+      node.url=configNode.url;
+      //fetch centralized credentials
+      cUsername = configNode.credentials.username;
+      cPassword = configNode.credentials.password;
+    }else{
+      node.status({ fill: 'red', shape: 'dot', text: 'configuration error' })
+      node.error('ERROR connecting, no valid configuration specified')
+      /* we get the properties
+      node.url = config.url
+      // we get the credentials
+      const cUsername = this.credentials.username
+      const cPassword = this.credentials.password*/
+    }
+    //Get node-specific properties
     node.baseDN = config.baseDN
-    // we get the credentials
-    const cUsername = this.credentials.username
-    const cPassword = this.credentials.password
     this.on('input', function (msg) {
       node.status({ fill: 'blue', shape: 'ring', text: 'connecting' })
       // import activedirectory2

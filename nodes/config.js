@@ -2,7 +2,9 @@
 module.exports = function (RED) {
     function ActiveDirectoryConfigNode(config){
         RED.nodes.createNode(this,config);
+        //get properties
         this.url=config.url;
+        //get credentials
         this.username=config.username;
         this.password=config.password;
     }
