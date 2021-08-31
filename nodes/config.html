@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('activedirectory-config',{
+    RED.nodes.registerType('ad-config',{
       category: 'config',
       defaults: {
         name: {
@@ -8,7 +8,12 @@
         url: {
           value: "",
           required: true
+        },
+        baseDN: {
+          value: "",
+          required: false
         }
+
       },
       credentials: {
         username: {
@@ -26,7 +31,7 @@
     });
   </script>
   
-<script type="text/x-red" data-template-name="activedirectory-config">
+<script type="text/x-red" data-template-name="ad-config">
   
     <hr>
     <h4>Node Configuration</h4>
@@ -43,6 +48,11 @@
       <label for="node-config-input-url"><i class="icon-globe"></i> Url</label>
       <input type="text" id="node-config-input-url" placeholder="ldap://localhost">
     </div>
+
+    <div class="form-row">
+      <label for="node-config-input-baseDN"><i class="icon-globe"></i> BaseDN (optional)</label>
+      <input type="text" id="node-config-input-baseDN" placeholder="dc=domain,dc=com">
+    </div>
   
     <hr>
     <h5>Credentials</h5>
@@ -58,7 +68,7 @@
     </div>
   </script>
 
- <script type="text/x-red" data-help-name="activedirectory-config">
+ <script type="text/x-red" data-help-name="ad-config">
     <p>Configuration Node for all other ActiveDirectory-nodes.</p>
   
     <h3>Details</h3>

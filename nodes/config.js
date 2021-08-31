@@ -4,12 +4,13 @@ module.exports = function (RED) {
         RED.nodes.createNode(this,config);
         //get properties
         this.url=config.url;
+        this.baseDN=config.baseDN;
         //get credentials
         this.username=config.username;
         this.password=config.password;
     }
 
-    RED.nodes.registerType('activedirectory-config', ActiveDirectoryConfigNode, {
+    RED.nodes.registerType('ad-config', ActiveDirectoryConfigNode, {
         credentials: {
           username: { type: 'text' },
           password: { type: 'password' }

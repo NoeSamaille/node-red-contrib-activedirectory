@@ -8,20 +8,19 @@ module.exports = function (RED) {
     if(configNode){
       //fetch centralized properties
       node.url=configNode.url;
+      //Get Overloaded baseDN, prioritize Node-specific config
+      if(config.baseDN){
+        node.baseDN=config.baseDN;
+      }else{
+        node.baseDN=configNode.baseDN;
+      }
       //fetch centralized credentials
       cUsername = configNode.credentials.username;
       cPassword = configNode.credentials.password;
     }else{
       node.status({ fill: 'red', shape: 'dot', text: 'configuration error' })
       node.error('ERROR connecting, no valid configuration specified')
-      /* we get the properties
-      node.url = config.url
-      // we get the credentials
-      const cUsername = this.credentials.username
-      const cPassword = this.credentials.password*/
     }
-    //Get node-specific properties
-    node.baseDN = config.baseDN
     node.on('input', function (msg) {
       node.status({ fill: 'blue', shape: 'ring', text: 'connecting' })
       // import activedirectory2
