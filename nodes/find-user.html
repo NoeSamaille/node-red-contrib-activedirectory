@@ -1,27 +1,27 @@
 <script type="text/javascript">
-  RED.nodes.registerType('find-user', {
-    category: 'Active Directory',
-    color: '#0E9EFF',
-    defaults: {
-      name: {
-        value: ""
+    RED.nodes.registerType('find-user', {
+      category: 'Active Directory',
+      color: '#0E9EFF',
+      defaults: {
+        name: {
+          value: ""
+        },
+        configName: {
+          value: "",
+          type: "ad-config"
+        },
+        baseDN: {
+          value: "",
+          required: true
+        }
       },
-      configName: {
-        value: "",
-        type: "ad-config"
-      },
-      baseDN: {
-        value: "",
-        required: true
+      inputs: 1,
+      outputs: 1,
+      icon: "bridge.png",
+      label: function () {
+        return this.name || "find user";
       }
-    },
-    inputs: 1,
-    outputs: 1,
-    icon: "bridge.png",
-    label: function () {
-      return this.name || "find user";
-    }
-  });
+    });
 </script>
 
 <script type="text/x-red" data-template-name="find-user">
