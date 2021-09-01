@@ -8,10 +8,6 @@
         url: {
           value: "",
           required: true
-        },
-        baseDN: {
-          value: "",
-          required: false
         }
 
       },
@@ -48,11 +44,6 @@
       <label for="node-config-input-url"><i class="icon-globe"></i> Url</label>
       <input type="text" id="node-config-input-url" placeholder="ldap://localhost">
     </div>
-
-    <div class="form-row">
-      <label for="node-config-input-baseDN"><i class="icon-globe"></i> BaseDN (optional)</label>
-      <input type="text" id="node-config-input-baseDN" placeholder="dc=domain,dc=com">
-    </div>
   
     <hr>
     <h5>Credentials</h5>
@@ -78,9 +69,6 @@
 
     <h4>Url</h4>
     The Url used to connect to your ActiveDirectory.
-
-    <h4>baseDN (optional)</h4>
-    The baseDN used to connect to your ActiveDirectory, can be configured individually on each node.
 
     <h4>Username</h4>
     The Username you wish to access your ActiveDirectory with.

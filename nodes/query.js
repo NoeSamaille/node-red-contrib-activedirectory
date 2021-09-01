@@ -8,11 +8,11 @@ module.exports = function (RED) {
     if(configNode){
       //fetch centralized properties
       node.url=configNode.url;
-      //Get Overloaded baseDN, prioritize Node-specific config
+      //Get baseDN
       if(config.baseDN){
         node.baseDN=config.baseDN;
       }else{
-        node.baseDN=configNode.baseDN;
+        node.error("Error, no base DN specified!");
       }
       //fetch centralized credentials
       cUsername = configNode.credentials.username;
