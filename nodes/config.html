@@ -23,19 +23,8 @@
     },
     label: function () {
       return this.name || "config node";
-    },
-
-    oneditprepare: function () {
-      this.name="HELLO";
     }
   });
-
-
-  var btn = document.getElementById("test_button");
-  btn.onclick = function () {
-    throw new Error("IgotHere!!");
-    Document.getElementById("node-config-input-name").value = "HELLO";
-  }
 </script>
 
 <script type="text/x-red" data-template-name="ad-config">
