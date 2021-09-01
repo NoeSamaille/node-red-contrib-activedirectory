@@ -2,12 +2,25 @@ module.exports = function (RED) {
   function findGroupNode (config) {
     RED.nodes.createNode(this, config)
     const node = this
-    // we get the properties
-    node.url = config.url
-    node.baseDN = config.baseDN
-    // we get the credentials
-    const cUsername = this.credentials.username
-    const cPassword = this.credentials.password
+    const configNode = RED.nodes.getNode(config.configName)
+    let cUsername
+    let cPassword
+    if (configNode) {
+      // fetch centralized properties
+      node.url = configNode.url
+      // Get baseDN
+      if (config.baseDN) {
+        node.baseDN = config.baseDN
+      } else {
+        node.error('Error, no base DN specified!')
+      }
+      // fetch centralized credentials
+      cUsername = configNode.credentials.username
+      cPassword = configNode.credentials.password
+    } else {
+      node.status({ fill: 'red', shape: 'dot', text: 'configuration error' })
+      node.error('ERROR connecting, no valid configuration specified')
+    }
     node.on('input', function (msg) {
       node.status({ fill: 'blue', shape: 'ring', text: 'connecting' })
       // import activedirectory2

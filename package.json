@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-activedirectory",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Node-RED node collection for Microsoft Active Directory.",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,8 @@
     "nodes": {
       "find-user": "./nodes/find-user.js",
       "find-group": "./nodes/find-group.js",
-      "query": "./nodes/query.js"
+      "query": "./nodes/query.js",
+      "ad-config": "./nodes/config.js"
     }
   },
   "dependencies": {
@@ -40,7 +41,7 @@
     "node-red-node-test-helper": "^0.2.7",
     "standard": "^16.0.3"
   },
-  "standard" : {
+  "standard": {
     "ignore": [
       "test/*_spec.js"
     ]
