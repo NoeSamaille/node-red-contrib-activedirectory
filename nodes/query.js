@@ -2,22 +2,22 @@ module.exports = function (RED) {
   function queryNode (config) {
     RED.nodes.createNode(this, config)
     const node = this
-    var configNode=RED.nodes.getNode(config.configName);
-    var cUsername;
-    var cPassword;
-    if(configNode){
-      //fetch centralized properties
-      node.url=configNode.url;
-      //Get baseDN
-      if(config.baseDN){
-        node.baseDN=config.baseDN;
-      }else{
-        node.error("Error, no base DN specified!");
+    const configNode = RED.nodes.getNode(config.configName)
+    let cUsername
+    let cPassword
+    if (configNode) {
+      // fetch centralized properties
+      node.url = configNode.url
+      // Get baseDN
+      if (config.baseDN) {
+        node.baseDN = config.baseDN
+      } else {
+        node.error('Error, no base DN specified!')
       }
-      //fetch centralized credentials
-      cUsername = configNode.credentials.username;
-      cPassword = configNode.credentials.password;
-    }else{
+      // fetch centralized credentials
+      cUsername = configNode.credentials.username
+      cPassword = configNode.credentials.password
+    } else {
       node.status({ fill: 'red', shape: 'dot', text: 'configuration error' })
       node.error('ERROR connecting, no valid configuration specified')
     }

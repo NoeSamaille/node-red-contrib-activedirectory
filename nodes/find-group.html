@@ -1,32 +1,32 @@
 <script type="text/javascript">
-    RED.nodes.registerType('find-group',{
-      category: 'Active Directory',
-      color: '#0E9EFF',
-      defaults: {
-        name: {
-          value: ""
-        },
-        configName: {
-          value: "",
-          type: "ad-config"
-        },
-        baseDN: {
-          value: "",
-          required: false
-        }
+  RED.nodes.registerType('find-group', {
+    category: 'Active Directory',
+    color: '#0E9EFF',
+    defaults: {
+      name: {
+        value: ""
       },
-      inputs:1,
-      outputs:1,
-      icon: "bridge.png",
-      label: function() {
-        return this.name||"find group";
+      configName: {
+        value: "",
+        type: "ad-config"
+      },
+      baseDN: {
+        value: "",
+        required: true
       }
-    });
-  </script>
-  
-  <script type="text/x-red" data-template-name="find-group">
-  
-    <hr>
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "bridge.png",
+    label: function () {
+      return this.name || "find group";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="find-group">
+
+    <hr>s
     <h4>Node Configuration</h4>
     <hr>
     <div class="form-row">
@@ -49,8 +49,8 @@
       <input type="text" id="node-input-baseDN" placeholder="dc=domain,dc=com">
     </div>
   </script>
-  
-  <script type="text/x-red" data-help-name="find-group">
+
+<script type="text/x-red" data-help-name="find-group">
     <p>Connects to a Microsoft Active Directory and returns the group corresponding to the group name/DN set in <code>msg.payload</code>.</p>
   
     <h3>Inputs</h3>
@@ -106,4 +106,3 @@
           <li><a href="https://github.com/NoeSamaille/node-red-contrib-activedirectory">GitHub</a> - the nodes github repository</li>
       </ul>
   </script>
-  

@@ -1,34 +1,45 @@
 <script type="text/javascript">
-    RED.nodes.registerType('ad-config',{
-      category: 'config',
-      defaults: {
-        name: {
-          value: ""
-        },
-        url: {
-          value: "",
-          required: true
-        }
-
+  RED.nodes.registerType('ad-config', {
+    category: 'config',
+    defaults: {
+      name: {
+        value: ""
       },
-      credentials: {
-        username: {
-          type:"text",
-          required: true
-        },
-        password: {
-          type:"password",
-          required: true
-        }
-      },
-      label: function() {
-        return this.name||"config node";
+      url: {
+        value: "",
+        required: true
       }
-    });
-  </script>
-  
+
+    },
+    credentials: {
+      username: {
+        type: "text",
+        required: true
+      },
+      password: {
+        type: "password",
+        required: true
+      }
+    },
+    label: function () {
+      return this.name || "config node";
+    },
+
+    oneditprepare: function () {
+      this.name="HELLO";
+    }
+  });
+
+
+  var btn = document.getElementById("test_button");
+  btn.onclick = function () {
+    throw new Error("IgotHere!!");
+    Document.getElementById("node-config-input-name").value = "HELLO";
+  }
+</script>
+
 <script type="text/x-red" data-template-name="ad-config">
-  
+
     <hr>
     <h4>Node Configuration</h4>
     <hr>
@@ -57,9 +68,13 @@
       <label for="node-config-input-password"><i class="fa fa-key"></i> Password</label>
       <input type="password" id="node-config-input-password">
     </div>
+
+    <div class="form-row">
+      <button class="red-ui-button" id="test_button">AD-Test</button>
+    </div>
   </script>
 
- <script type="text/x-red" data-help-name="ad-config">
+<script type="text/x-red" data-help-name="ad-config">
     <p>Configuration Node for all other ActiveDirectory-nodes.</p>
   
     <h3>Details</h3>
