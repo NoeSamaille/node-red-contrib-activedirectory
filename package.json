@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-activedirectory",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Node-RED node collection for Microsoft Active Directory.",
   "main": "index.js",
   "scripts": {
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "mocha": "^9.0.3",
-    "node-red": "^2.0.5",
+    "node-red": "^2.0.6",
     "node-red-node-test-helper": "^0.2.7",
     "standard": "^16.0.3"
   },
