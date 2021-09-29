@@ -2,7 +2,6 @@
 module.exports = function (RED) {
   function ActiveDirectoryConfigNode (config) {
     RED.nodes.createNode(this, config)
-    const node = this
     // get properties
     this.url = config.url
     this.baseDN = config.baseDN
@@ -35,15 +34,15 @@ function doConnectionTest (ActiveDirectory, req, res) {
         } catch (e) {
           // When an error occurs, the callback of getRootDSE gets called twice, which leads to an HTTP error
           // The try-catch-block prevents this, but lets all other errors through to console
-          if (e.code != 'ERR_HTTP_HEADERS_SENT') {
+          if (e.code !== 'ERR_HTTP_HEADERS_SENT') {
             console.log(e)
           }
           resolve()
         }
       } else {
-        if (req.body.mode == 'test') {
+        if (req.body.mode === 'test') {
           res.json('Success')
-        } else if (req.body.mode == 'getBaseDN') {
+        } else if (req.body.mode === 'getBaseDN') {
           console.log('Successfully autofilled baseDN!')
           res.json(result.defaultNamingContext)
         }
