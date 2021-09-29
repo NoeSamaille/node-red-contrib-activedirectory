@@ -8,6 +8,10 @@
       url: {
         value: "",
         required: true
+      },
+      baseDN: {
+        value: "",
+        required: false
       }
 
     },
@@ -23,6 +27,30 @@
     },
     label: function () {
       return this.name || "config node";
+    },
+    oneditprepare: function () {
+      let nodeURL = this.url
+
+      //Set onclick listener to retrieve and fill in the baseDN
+      $("#autofillBaseDN").click(function () {
+        $.post('adconfig',
+          { url: nodeURL, mode: "getBaseDN" },
+          function (data) {
+            $("#node-config-input-baseDN").val(data)
+            RED.notify("Autofill successful!")
+          })
+      });
+
+      //Set onclick listener to perform a connection test using getRootDSE
+      $("#testADConnection").click(function () {
+        $.post('adconfig',
+          { url: nodeURL, mode: "test" },
+          function (data) {
+            if (data != "Success") { RED.notify("Failure!") } else {
+              RED.notify("Success!")
+            }
+          })
+      });
     }
   });
 </script>
@@ -43,6 +71,14 @@
     <div class="form-row">
       <label for="node-config-input-url"><i class="icon-globe"></i> Url</label>
       <input type="text" id="node-config-input-url" placeholder="ldap://localhost">
+    </div>
+    <div class="form-row">
+      <label for="node-config-input-baseDN"><i class="icon-tag"></i> BaseDN</label>
+      <input type="text" id="node-config-input-baseDN" placeholder="dc=domain,dc=com">
+    </div>
+    <div class="form-row">
+      <button type="button" class="red-ui-button" id="autofillBaseDN">Autofill baseDN</button>
+      <button type="button" class="red-ui-button" id="testADConnection">Test connection to ActiveDirectory</button>
     </div>
   
     <hr>
@@ -69,6 +105,15 @@
 
     <h4>Url</h4>
     The Url used to connect to your ActiveDirectory.
+
+    <h4>BaseDN</h4>
+    The baseDN used to connect to your ActiveDirectory.
+
+    <h4>Autofill baseDN</h4>
+    Sends an HTTP-request to the underlying node.js server to retrieve the defaultNamingContext from the ActiveDirectory specified by the given url.
+
+    <h4>Test connection to ActiveDirectory</h4>
+    Sends an HTTP-request to the underlying node.js server to perform a connection test on the ActiveDirectory specified by the given url.
 
     <h4>Username</h4>
     The Username you wish to access your ActiveDirectory with.
