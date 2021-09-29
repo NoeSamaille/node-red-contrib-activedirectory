@@ -33,9 +33,7 @@
     }
   },
   "dependencies": {
-    "activedirectory2": "^2.1.0",
-    "browserify": "^17.0.0",
-    "dtrace-provider": "^0.8.8"
+    "activedirectory2": "^2.1.0"
   },
   "devDependencies": {
     "mocha": "^9.0.3",
