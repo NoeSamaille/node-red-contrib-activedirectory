@@ -16,7 +16,7 @@ If you want to contribute in order to add brand new features and/or nodes, do no
 :heavy_exclamation_mark: **Breaking CHANGES FROM v0.2 to v0.3** :heavy_exclamation_mark:
 
 A `config` node holds the connection parameters now.
-Please, redeploy your `activdirecory`nodes.
+Please, redeploy your `active directory` nodes.
 
 ---
 
