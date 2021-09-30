@@ -1,6 +1,6 @@
 // throw new Error("Config Node Loaded!");
 module.exports = function (RED) {
-  function ActiveDirectoryConfigNode(config) {
+  function ActiveDirectoryConfigNode (config) {
     RED.nodes.createNode(this, config)
     // get properties
     this.url = config.url
@@ -23,7 +23,7 @@ module.exports = function (RED) {
     await doConnectionTest(ActiveDirectory, req, res).catch()
   })
 }
-async function doConnectionTest(ActiveDirectory, req, res) {
+async function doConnectionTest (ActiveDirectory, req, res) {
   return new Promise((resolve, reject) => {
     try {
       ActiveDirectory.prototype.getRootDSE(req.body.url, ['defaultNamingContext'], function (err, result) {
