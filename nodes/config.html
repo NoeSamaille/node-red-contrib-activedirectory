@@ -46,8 +46,14 @@
         $.post('adconfig',
           { url: nodeURL, mode: "test" },
           function (data) {
-            if (data != "Success") { RED.notify("Failure!") } else {
-              RED.notify("Success!")
+            if (data === 'Success') { 
+              RED.notify('Success!') }
+            else if (data === 'Failure') {
+              RED.notify('Failure!')
+            } else if (data === 'ConfigInvalid') {
+              RED.notify('No valid url supplied! Try updating your configuration before testing.')
+            }else{
+              RED.notify('Encountered an unknown Error!')
             }
           })
       });
