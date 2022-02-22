@@ -25,7 +25,6 @@ module.exports = function (RED) {
           node.log('Got baseDN from AD -> ' + JSON.stringify(result.defaultNamingContext))
           node.status({ fill: 'blue', shape: 'ring', text: 'baseDN: "' + result.defaultNamingContext + '"' })
           node.baseDN = result.defaultNamingContext
-          
         })
       }
       // fetch centralized credentials
