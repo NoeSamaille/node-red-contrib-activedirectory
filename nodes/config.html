@@ -3,13 +3,13 @@
     category: 'config',
     defaults: {
       name: {
-        value: ""
+        value: "",
+        required: true
       },
       url: {
         value: "",
         required: true
       }
-
     },
     credentials: {
       username: {
@@ -22,7 +22,7 @@
       }
     },
     label: function () {
-      return this.name || "config node";
+      return this.name || "MyAdConfig";
     }
   });
 </script>
@@ -44,7 +44,6 @@
       <label for="node-config-input-url"><i class="icon-globe"></i> Url</label>
       <input type="text" id="node-config-input-url" placeholder="ldap://localhost">
     </div>
-  
     <hr>
     <h5>Credentials</h5>
     <hr>
@@ -71,10 +70,10 @@
     The Url used to connect to your ActiveDirectory.
 
     <h4>Username</h4>
-    The Username you wish to access your ActiveDirectory with.
+    The Username for authentication against the ActiveDirectory.
 
     <h4>Password</h4>
-    The Password to the account corresponding to above username.
+    The Password for authentication against the ActiveDirectory.
 
     <h3>References</h3>
       <ul>

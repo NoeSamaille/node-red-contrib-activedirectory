@@ -1,5 +1,9 @@
 module.exports = function (RED) {
-  function findUserNode (config) {
+  'use strict'
+
+  const ActiveDirectory = require('activedirectory2')
+
+  function findUserNode (config) { // eslint-disable-line no-unused-vars
     RED.nodes.createNode(this, config)
     const node = this
     const configNode = RED.nodes.getNode(config.configName)
@@ -12,19 +16,26 @@ module.exports = function (RED) {
       if (config.baseDN) {
         node.baseDN = config.baseDN
       } else {
-        node.error('Error, no base DN specified!')
+        node.log('No baseDN configured. Trying lookup ...')
+        ActiveDirectory.prototype.getRootDSE(node.url, ['defaultNamingContext'], function (err, result) {
+          if (err) {
+            node.error('ERROR (baseDN-Lookup): ' + JSON.stringify(err))
+            return
+          }
+          node.log('Got baseDN from AD -> ' + JSON.stringify(result.defaultNamingContext))
+          node.status({ fill: 'blue', shape: 'ring', text: 'baseDN: "' + result.defaultNamingContext + '"' })
+          node.baseDN = result.defaultNamingContext
+        })
       }
       // fetch centralized credentials
       cUsername = configNode.credentials.username
       cPassword = configNode.credentials.password
     } else {
       node.status({ fill: 'red', shape: 'dot', text: 'configuration error' })
-      node.error('ERROR connecting, no valid configuration specified')
+      node.warn('ERROR connecting, no valid configuration specified')
     }
     this.on('input', function (msg) {
       node.status({ fill: 'blue', shape: 'ring', text: 'connecting' })
-      // import activedirectory2
-      const ActiveDirectory = require('activedirectory2')
       const adConfig = {
         url: node.url,
         baseDN: node.baseDN,
@@ -71,10 +82,5 @@ module.exports = function (RED) {
     })
   }
 
-  RED.nodes.registerType('find-user', findUserNode, {
-    credentials: {
-      username: { type: 'text' },
-      password: { type: 'password' }
-    }
-  })
+  RED.nodes.registerType('find-user', findUserNode)
 }

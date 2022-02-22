@@ -20,7 +20,6 @@ Please, redeploy your `active directory` nodes.
 
 ---
 
-
 Getting started
 --------------
 
@@ -58,7 +57,7 @@ Every node requires LDAP configuration/credentials (configured in the config-nod
 ![image of config-node credentials](images/config_node_credentials.png)
 
 The configuration for the baseDN has to be configured seperately for each node.
-+ `baseDN` {string}: Mandatory, The root DN from which all searches will be performed, e.g. `dc=example,dc=com`.
++ `baseDN` {string}: The root DN from which all searches will be performed, e.g. `dc=example,dc=com`.
 
 ![image of individual-node credentials](images/indiv_node_credentials.png)
 
